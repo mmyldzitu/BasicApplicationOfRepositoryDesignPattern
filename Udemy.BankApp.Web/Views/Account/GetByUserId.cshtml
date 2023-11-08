@@ -1,0 +1,43 @@
+﻿@model List<AccountListModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row mt-4">
+
+    <div class="col-6 mt-4">
+        <h5 class="card-title">Kullanıcı Bilgileri</h5>
+        <div class="card">
+
+            <div class="card-body">
+
+                <p class="card-text">AD:@ViewBag.FullName</p>
+                <a asp-action="Index" asp-controller="Home" class="btn btn-primary"> Ana Sayfaya Git</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-6 mt-4">
+        <h5>Hesap Bilgileri</h5>
+        <div class="card">
+
+            @if (Model.Count > 0)
+            {
+                @foreach (var item in Model)
+                {
+                    <div class="card-body">
+                        <h5 class="card-title">Hesap Numarası: @item.AccountNumber</h5>
+                        <p class="card-text">Bakiye: @item.Balance</p>
+                        <a asp-action="SendMoney" asp-controller="Account" asp-route-accountId="@item.Id" class="btn btn-primary">Para Gönder</a>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="alert alert-danger" roler="alert">
+                    <p class="lead">Kullanıcının hesabı bulunmamaktadır</p>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

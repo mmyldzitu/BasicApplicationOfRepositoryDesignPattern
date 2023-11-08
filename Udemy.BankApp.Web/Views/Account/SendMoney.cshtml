@@ -1,0 +1,30 @@
+﻿@model SelectList
+@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="mt-3">
+   
+    <form asp-action="SendMoney" method="post" class="w-75 mx-auto">
+        <div class="mb-3">
+            <label class="form-control">Bakiyeniz:  @ViewBag.balanceofthis ₺  </label>
+        </div>
+        <div class="mb-3">
+            <input type="hidden" name="senderId" value="@ViewBag.senderId" />
+
+            <label>Göndereceğiniz hesap Numarası</label>
+            <select class="form-select" asp-items=@Model name="AccountId">
+            </select>
+        </div>
+        <div class="mb-3">
+            <label>Göndermek İstediğiniz Tutarı Giriniz</label>
+            <input type="number" name="Amount" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Para Gönder</button>
+        </div>
+
+
+
+    </form>
+
+</div>
